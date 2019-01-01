@@ -44,7 +44,7 @@ class TopStoriesSentiment(views.APIView):
                     parsed_story['url'] = story['url']
                     parsed_story['type'] = story['type']
                     stories.append(parsed_story)
-                    request.session['stories'] = stories
+                request.session['stories'] = stories
 
             stories = request.session['stories']
 
