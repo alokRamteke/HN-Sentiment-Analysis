@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sentiment Analysis</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div>
+<h2 id="stories">Top 10 stories</h2>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+            $.ajax({
+            url: "/sentiment-analysis/",
+            type: "GET",
+            success: function (data, status, xhr) {  
+                if (status == 'success') {
+                  $.each(data, function (index, value) {
+                    $("#stories").append(
+                        "<ul>\
+                                <li>\
+                                    <a href="+value.url+">"+value.title+"</a><br>\
+                                    <small>\
+                                        <span>by: "+value.submitted_by+"</span>\
+                                    </small>\
+                                    <h3>"+value.sentiment+"</h3>\
+                                </li>\
+                            </ul>\
+                          ");
+                    
+                      })
+                   }
+              // error: function (response, xhr, error) {
+              //     }
+              }
+      });
+});
+        </script>
+    </body>
+</html>
